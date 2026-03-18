@@ -44,3 +44,15 @@ def generate_tweet(style_sample, temperature=0.7, max_tokens=50):
 new_tweet = generate_tweet(recent_tweets)
 
 print("Generated Tweet:", new_tweet)
+
+##
+## Expected output (exact tweet will vary due to temperature):
+##   Generated Tweet: Fueling creativity with coffee and code — the perfect duo for a dev's day! ☕💻
+##
+## Challenges:
+##   1. Generate 5 tweets with temperature=0.2 and 5 with temperature=1.5 — compare the results
+##   2. Add a `topic` parameter to generate_tweet() so callers can say "write a tweet about AI"
+##   3. Add a `require_hashtags=True` parameter that appends an instruction to include hashtags
+##   4. Replace recent_tweets with tweets in a different style (formal, technical, funny)
+##      and see how the model adapts
+##

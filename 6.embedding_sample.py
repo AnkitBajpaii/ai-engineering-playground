@@ -38,3 +38,19 @@ for _input in inputs:
     cosine_similarity = np.dot(embedding_a, embedding_b) / (np.linalg.norm(embedding_a) * np.linalg.norm(embedding_b))
 
     print(f"Cosine similarity between '{_input[0]}' and '{_input[1]}': {cosine_similarity}\n")
+
+##
+## Expected output (values are approximate):
+##   Cosine similarity between 'mango shake' and 'mango': 0.8731
+##   Cosine similarity between 'ice cream' and 'vanilla': 0.7842
+##   Cosine similarity between 'phone' and 'car': 0.4103
+##
+## Notice: related concepts score much higher than unrelated ones.
+## A score above ~0.75 generally means the words are semantically related.
+##
+## Challenges:
+##   1. Add your own word pairs — try "king" and "queen", or "dog" and "cat"
+##   2. Find two phrases that score above 0.95 (near-identical meaning)
+##   3. Try antonyms like "hot" and "cold" — are they more similar than "phone" and "car"? Why?
+##   4. Try "Python" and "snake" — does the model know it's ambiguous?
+##

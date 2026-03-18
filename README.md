@@ -1,6 +1,45 @@
 # AI Engineering Playground — A Hands-On Learning Path
 
-A structured, step-by-step collection of Python scripts for learning AI engineering — from your first OpenAI API call through embeddings, fine-tuning, BERT-based NLP, and beyond (LangGraph, RAG, MCP, and Agentic AI coming soon). Each file introduces one focused concept, making this ideal as a personal reference or a guided learning resource for other developers.
+A structured, step-by-step collection of Python scripts for learning AI engineering — from your first OpenAI API call through embeddings, fine-tuning, BERT-based NLP, and beyond. Each file introduces one focused concept, making this ideal as a personal reference or a guided learning resource for other developers.
+
+---
+
+## What you'll be able to build
+
+By the end of the current learning path you'll have hands-on experience with:
+
+| Skill | File(s) |
+| --- | --- |
+| Call the OpenAI API and parse responses | 1, 3 |
+| Build a CLI sentiment analyzer | 4 |
+| Build a multi-turn chatbot with token cost tracking | 5 |
+| Generate and compare text embeddings | 6, 12 |
+| Fine-tune a model on your own dataset | 7, 8 |
+| Handle API errors gracefully with retry logic | 9 |
+| Generate content with style-controlled prompts | 10 |
+| Build a domain-specific support bot from a knowledge base | 11 |
+| Generate BERT embeddings locally (no API key needed) | 13 |
+| Build a semantic job search engine | 14 |
+
+---
+
+## Roadmap
+
+- [x] **Part 1** — OpenAI API Basics (files 1–5)
+- [x] **Part 2** — Embeddings (files 6, 12)
+- [x] **Part 3** — Fine-Tuning (files 7–8)
+- [x] **Part 4** — Error Handling & Robustness (file 9)
+- [x] **Part 5** — Practical Applications (files 10–11)
+- [x] **Part 6** — BERT & Local NLP (files 13–14)
+- [ ] **Part 7** — Function Calling & Tool Use
+- [ ] **Part 8** — Streaming Responses
+- [ ] **Part 9** — Structured Output (JSON mode, Pydantic)
+- [ ] **Part 10** — Vision & Multimodal (GPT-4o image input)
+- [ ] **Part 11** — Retrieval Augmented Generation (RAG with FAISS)
+- [ ] **Part 12** — Agents & LangGraph
+- [ ] **Part 13** — MCP (Model Context Protocol)
+
+> Star the repo to get notified when new parts drop.
 
 ---
 
@@ -21,10 +60,22 @@ A structured, step-by-step collection of Python scripts for learning AI engineer
 
 ## Setup
 
+**Option A — one command (recommended):**
+
+```bash
+git clone https://github.com/AnkitBajpaii/ai-engineering-playground.git
+cd ai-engineering-playground
+make setup
+# Open .env and add your OPENAI_API_KEY, then:
+make run n=1
+```
+
+**Option B — manual:**
+
 ```bash
 # 1. Clone the repo
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/AnkitBajpaii/ai-engineering-playground.git
+cd ai-engineering-playground
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
@@ -36,7 +87,7 @@ pip install -r requirements.txt
 
 # 4. Set up your API key
 cp .env.example .env
-# Then open .env and replace the placeholder with your actual OpenAI API key
+# Open .env and replace the placeholder with your actual OpenAI API key
 ```
 
 > The `.env` file is loaded automatically by `python-dotenv` in every script. Never commit it to version control — it is listed in `.gitignore`.

@@ -108,6 +108,21 @@ query = "python developer with experience in web development"
 results = semantic_search(query)
 for title, similarity, description in results:
     print(f"Title: {title}, Similarity: {similarity:.2f}")
+
+##
+## Expected output (titles depend on your CSV data):
+##   Pre-computing job description embeddings...
+##   Title: Software Engineer - Python, Similarity: 0.91
+##   Title: Full Stack Web Developer, Similarity: 0.87
+##   Title: Backend Engineer, Similarity: 0.83
+##
+## Challenges:
+##   1. Change MAX_ROWS to None to process all rows in your dataset
+##   2. Try different search queries: "machine learning engineer", "data analyst", "devops"
+##   3. Add a similarity threshold (e.g. only show results with similarity > 0.80)
+##   4. Add a second search query and compare its top results to the first — notice how
+##      semantically different queries return different rankings even on the same dataset
+##
     
 
 

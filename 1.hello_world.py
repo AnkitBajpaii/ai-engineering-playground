@@ -31,3 +31,14 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message.content)
+
+##
+## Expected output (exact wording varies):
+##   नमस्ते, आप कैसे हैं?
+##
+## Challenges:
+##   1. Change the target language to French, Spanish, or Japanese — just update the system prompt
+##   2. Translate multiple sentences by changing the user message to a paragraph
+##   3. Remove the system message entirely and see how the model responds differently
+##   4. Add a second user message asking it to now translate the Hindi back to English
+##

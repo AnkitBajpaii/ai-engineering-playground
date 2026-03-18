@@ -94,3 +94,32 @@ for preprocessed_text_sequence in preprocessed_Text_sequences:
     print("Generating BERT embedding for the preprocessed text sequence:\n", preprocessed_text_sequence, "\n")
     embedding = generate_embedding(preprocessed_text_sequence)
     print("BERT embedding for the preprocessed text sequence:\n", embedding, "\n")
+
+##
+## Expected output (truncated — embeddings are 768 numbers):
+##   Original text:
+##    We had a picnic on the river bank.
+##
+##   Original text tokens:
+##    ['we', 'had', 'a', 'picnic', 'on', 'the', 'river', 'bank', '.']
+##
+##   Tokens after removing stop words, punctuation and lemmatization:
+##    ['picnic', 'river', 'bank']
+##
+##   BERT tokens:
+##    ['[CLS]', 'pic', '##nic', 'river', 'bank', '[SEP]']
+##
+##   CLS embeddings shape: torch.Size([768])
+##   BERT CLS embedding: [-0.1532  0.3421  0.0892 ... ] (768 values)
+##
+## Note: "bank" is ambiguous (river bank vs savings bank). BERT embeddings for the two
+## sentences will differ because BERT uses context to assign meaning.
+##
+## Challenges:
+##   1. Add a third sentence like "She went to the bank to deposit money" and compare
+##      its embedding to both existing sentences using cosine similarity
+##   2. Remove the preprocessing step and pass raw text directly to BERT — does it matter?
+##   3. Print the BERT tokens for both sentences side by side to see how wordpiece
+##      tokenization handles the word "bank" differently based on context
+##   4. Try bert-base-multilingual-cased instead of bert-base-uncased for non-English text
+##

@@ -35,3 +35,21 @@ print("Cosine similarity between the two embeddings:", cosine_sim)
 # Calculate the dot product
 dot_product = np.dot(embedding1, embedding2)
 print("Dot product:", dot_product)
+
+##
+## Expected output:
+##   Embedding 1: [1.5 2.  3.5]
+##   Embedding 2: [4.  1.  2.5]
+##   Euclidean distance between the two embeddings: 3.3541
+##   Cosine similarity between the two embeddings: 0.7792
+##   Dot product: 16.75
+##
+## Challenges:
+##   1. Create two vectors pointing in the exact same direction (e.g. [1,2,3] and [2,4,6])
+##      — cosine similarity should be 1.0, but euclidean distance will not be 0. Why?
+##   2. Create two perpendicular vectors (dot product = 0) — what does cosine similarity return?
+##   3. Normalize both vectors to unit length before computing euclidean distance
+##      — observe that it now equals sqrt(2 - 2*cosine_similarity)
+##   4. Scale up to 768 dimensions (BERT embedding size) using np.random.rand(768)
+##      and see if the metrics still behave as expected
+##

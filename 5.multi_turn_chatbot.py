@@ -61,3 +61,28 @@ while True:
     
 
 print(f"Total completion tokens generated across all turns: {over_all_usage_tokens}")
+
+##
+## Expected output (sample session):
+##   Welcome to the Programming Help chatbot. Ask me a question!
+##   You: What is a list in Python?
+##   Chat Assistant: A list is an ordered, mutable collection of items. Example: my_list = [1, 2, 3]
+##
+##   Tokens this turn — prompt: 38, completion: 21, total: 59
+##
+##   You: How is it different from a tuple?
+##   Chat Assistant: A tuple is like a list but immutable — you can't change it after creation.
+##
+##   Tokens this turn — prompt: 70, completion: 18, total: 88
+##                               ^^^ grows each turn as history is re-sent
+##
+##   You: bye
+##   Chatbot: Goodbye! Have a great day!
+##   Total completion tokens generated across all turns: 39
+##
+## Challenges:
+##   1. Add a /clear command that resets the messages list (keeps the system message)
+##   2. Add a /history command that prints all messages exchanged so far
+##   3. Cap the conversation at 10 turns — after that, print a warning and exit gracefully
+##   4. Track the cost: gpt-4.1-mini charges ~$0.40 per 1M completion tokens. Print estimated cost at the end.
+##

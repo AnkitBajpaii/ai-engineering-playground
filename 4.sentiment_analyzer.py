@@ -43,3 +43,22 @@ while True:
     result = analyze_sentiment(text_to_analyze)
     print(f"Sentiment Analyzer: {result}\n")
 
+##
+## Expected output (sample session):
+##   Welcome to the Sentiment Analyzer bot. Enter a text to analyze its sentiment:
+##   > I love this product, it works great!
+##   Sentiment Analyzer: The sentiment of the given text is: positive
+##
+##   > This is the worst experience I've ever had.
+##   Sentiment Analyzer: The sentiment of the given text is: negative
+##
+##   > The weather today is okay, nothing special.
+##   Sentiment Analyzer: The sentiment of the given text is: neutral
+##
+## Challenges:
+##   1. Try a sarcastic sentence like "Oh great, another Monday" — does it get the tone right?
+##   2. Extend the output to include "mixed" as a fourth possible sentiment
+##   3. Add a confidence score by asking the model to return "positive:0.9" and parse it
+##   4. Change max_tokens=50 to max_tokens=1 and see what breaks — then fix it
+##
+

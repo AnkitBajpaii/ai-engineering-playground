@@ -116,3 +116,24 @@ print(f"Fine-tuning job submitted. Job ID: {job_id}")
 
 # save job_id as environment variable for later use
 os.environ["FINE_TUNING_JOB_ID"] = job_id
+
+##
+## Expected output:
+##   Num Examples in training_set.jsonl: 50
+##   First example:
+##   {'role': 'system', 'content': 'You are a helpful assistant.'}
+##   {'role': 'user', 'content': 'What is the capital of France?'}
+##   {'role': 'assistant', 'content': 'Paris.'}
+##   No formatting errors found. Dataset is ready for fine-tuning.
+##
+##   Num Examples in validation_set.jsonl: 10
+##   No formatting errors found. Dataset is ready for fine-tuning.
+##
+##   Fine-tuning job submitted. Job ID: ftjob-XXXXXXXXXXXXXXXXXXXXXXXX
+##
+## Challenges:
+##   1. Intentionally break a line in your JSONL (remove the "role" key) — observe the error caught
+##   2. Create a tiny 10-example training set on a topic of your choice and submit it
+##   3. Add a step that prints the estimated training cost before submitting (OpenAI shows this in the dashboard)
+##   4. Save the job_id to your .env file automatically instead of just os.environ
+##

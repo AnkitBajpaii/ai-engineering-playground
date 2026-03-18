@@ -39,3 +39,23 @@ completion = client.chat.completions.create(
 print(completion.choices[0].message.content)
 
 print_stats(completion)
+
+##
+## Expected output (approximate — JSON and IDs will vary):
+##   {"code": "def sum_even_numbers(numbers):\n    return sum(n for n in numbers if n % 2 == 0)"}
+##
+##   Completion Stats below:
+##   Completion ID: chatcmpl-XXXXXXXXXXXXXXXXXXXXXXXX
+##   Model used: gpt-4.1-mini-2025-04-14
+##   Total tokens: 71
+##   Prompt tokens: 49
+##   Completion tokens: 22
+##   Finish reason: stop
+##   System fingerprint: fp_XXXXXXXXXX
+##
+## Challenges:
+##   1. Run the script twice with the same seed=1234 — the code snippet should be identical
+##   2. Change seed to a different number and observe whether the output changes
+##   3. Remove response_format and observe the model now wraps the code in markdown fences
+##   4. Ask for a different function and compare the token counts — longer code = more tokens
+##

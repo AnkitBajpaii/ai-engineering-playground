@@ -158,3 +158,25 @@ def main():
         
 if __name__ == "__main__":
     main()
+
+##
+## Expected output (sample session):
+##   Welcome to the shoestore.com chatbot. Ask me a question!
+##   You: Do you have running shoes?
+##   Chatbot: Yes, we have a wide variety of running shoes suitable for different running
+##            styles and terrains. Whether you're a beginner or a marathon runner, we've got you covered.
+##
+##   You: Can I return shoes after 60 days?
+##   Chatbot: Our return policy allows returns within 30 days in original condition for a
+##            full refund or exchange. For questions beyond that, email support@shoestore.com.
+##
+##   You: What's the weather today?
+##   Chatbot: I'm sorry, but I don't have the information to answer that question.
+##            Please email our support team at support@shoestore.com.
+##
+## Challenges:
+##   1. Replace the shoe store knowledge base with your own domain (restaurant, SaaS product, library)
+##   2. Add conversation history so the bot remembers earlier questions in the same session
+##   3. Add an input() prompt that asks the user for the store name at startup and inject it into training_data
+##   4. Move training_data to a separate .txt file and load it at runtime instead of hardcoding it
+##

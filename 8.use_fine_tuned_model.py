@@ -49,3 +49,24 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message.content)
+
+##
+## Expected output (if job is still running):
+##   List 10 fine-tuning jobs: SyncPage[FineTuningJob](...)
+##   Job ID: ftjob-XXXXXXXXXXXXXXXXXXXXXXXX
+##   Status: running
+##   Fine Tuned Model: None
+##   Fine-tuned model is not ready yet. Job status: running
+##
+## Expected output (if job succeeded):
+##   Job ID: ftjob-XXXXXXXXXXXXXXXXXXXXXXXX
+##   Status: succeeded
+##   Fine Tuned Model: ft:gpt-4.1-mini:personal::XXXXXXXX
+##   The sky is blue because of a phenomenon called Rayleigh scattering...
+##
+## Challenges:
+##   1. Ask the fine-tuned model 5 different questions and compare its answers to the base model
+##   2. Add a loop that polls the job status every 30 seconds until it's "succeeded" or "failed"
+##   3. Test whether your fine-tuned model answers differently on the topic it was trained on
+##   4. List all your fine-tuning jobs and print a summary table: ID, status, base model, created date
+##
