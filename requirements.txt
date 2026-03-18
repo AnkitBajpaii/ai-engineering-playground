@@ -1,0 +1,12 @@
+# use python -m pip install -r requirements.txt
+openai
+openai[datalib]
+python-dotenv
+numpy
+pandas
+scikit-learn
+nltk
+torch
+transformers
+clip
+pillow
