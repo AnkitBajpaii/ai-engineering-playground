@@ -10,7 +10,24 @@ env/
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+*.egg-info/
 
 # IDE
 .vscode/
 .idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# HuggingFace model cache (downloaded on first run, not part of the repo)
+.cache/
+
+# User-specific data files (not included in the repo)
+job_descriptions.csv

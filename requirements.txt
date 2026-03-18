@@ -1,12 +1,10 @@
 # use python -m pip install -r requirements.txt
-openai
+openai>=2.0.0
 openai[datalib]
-python-dotenv
-numpy
-pandas
-scikit-learn
-nltk
-torch
-transformers
-clip
-pillow
+python-dotenv>=1.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+nltk>=3.8.0
+torch>=2.0.0
+transformers>=4.30.0

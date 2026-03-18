@@ -15,12 +15,23 @@
 ##
 import json
 import os
-import numpy as np
 from collections import defaultdict
+from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
+
+TRAINING_FILE = "training_set.jsonl"
+VALIDATION_FILE = "validation_set.jsonl"
+
+for required_file in [TRAINING_FILE, VALIDATION_FILE]:
+    if not Path(required_file).exists():
+        raise FileNotFoundError(
+            f"Required file not found: {required_file}\n"
+            "Create your training and validation JSONL files before running this script.\n"
+            "Each line must be a JSON object with a 'messages' key (see file header for format)."
+        )
 
 def check_data_formatting(data_path):
     # load the data set
@@ -79,17 +90,17 @@ def check_data_formatting(data_path):
         print("No formatting errors found. Dataset is ready for fine-tuning.")
 
 # validate data
-check_data_formatting("training_set.jsonl")
+check_data_formatting(TRAINING_FILE)
 print("\n")
-check_data_formatting("validation_set.jsonl")
+check_data_formatting(VALIDATION_FILE)
 
 client = OpenAI()
 
 # This will make the files available for use with a fine-tuning job.
-with open("training_set.jsonl", "rb") as f:
+with open(TRAINING_FILE, "rb") as f:
     training_response = client.files.create(file=f, purpose="fine-tune")
 
-with open("validation_set.jsonl", "rb") as f:
+with open(VALIDATION_FILE, "rb") as f:
     validation_response = client.files.create(file=f, purpose="fine-tune")
 
 # submit our fine-tuning training job

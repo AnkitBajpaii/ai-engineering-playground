@@ -19,6 +19,13 @@
 ## Note: Downloads ~440MB BERT model on first run. No OpenAI API key required.
 ## Run: python 14.find_matching_jobs.py
 ##
+import nltk
+# Download required NLTK corpora on first run (no-op if already present)
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+
 import numpy as np
 import pandas as pd
 import torch
@@ -47,10 +54,15 @@ def load_dataset():
     )
 
 # Load dataset from CSV file
-df = load_dataset()
+try:
+    df = load_dataset()
+except FileNotFoundError as e:
+    raise SystemExit(f"Error: {e}")
 
-# Read only the first twenty job descriptions
-df = df.head(20)
+# Limit rows for faster demo runs. Set to None to process the full dataset.
+MAX_ROWS = 20
+if MAX_ROWS is not None:
+    df = df.head(MAX_ROWS)
 
 # Preprocess text data
 stop_words = set(stopwords.words('english'))

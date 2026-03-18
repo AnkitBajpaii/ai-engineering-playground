@@ -16,6 +16,13 @@
 ## Note: Downloads ~440MB BERT model on first run. No OpenAI API key required.
 ## Run: python 13.bert_sample.py
 ##
+import nltk
+# Download required NLTK corpora on first run (no-op if already present)
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
