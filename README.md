@@ -20,6 +20,7 @@ By the end of the current learning path you'll have hands-on experience with:
 | Build a domain-specific support bot from a knowledge base | 11 |
 | Generate BERT embeddings locally (no API key needed) | 13 |
 | Build a semantic job search engine | 14 |
+| Build a semantic job search engine with a vector database | 15 |
 
 ---
 
@@ -30,7 +31,7 @@ By the end of the current learning path you'll have hands-on experience with:
 - [x] **Part 3** — Fine-Tuning (files 7–8)
 - [x] **Part 4** — Error Handling & Robustness (file 9)
 - [x] **Part 5** — Practical Applications (files 10–11)
-- [x] **Part 6** — BERT & Local NLP (files 13–14)
+- [x] **Part 6** — BERT & Local NLP (files 13–15)
 - [ ] **Part 7** — Function Calling & Tool Use
 - [ ] **Part 8** — Streaming Responses
 - [ ] **Part 9** — Structured Output (JSON mode, Pydantic)
@@ -94,7 +95,7 @@ cp .env.example .env
 
 ### NLTK Data (required for files 13 and 14)
 
-Files 13 and 14 use NLTK corpora that must be downloaded once before running:
+Files 13 and 14 use NLTK corpora that must be downloaded once before running. File 15 does not require NLTK.
 
 ```python
 import nltk
@@ -157,6 +158,7 @@ The scripts are numbered in the order they should be studied. Each one introduce
 |---|------|---------|--------------|
 | 13 | [13.bert_sample.py](13.bert_sample.py) | BERT embeddings | Text preprocessing (tokenization, stop word removal, lemmatization) and generating BERT CLS embeddings using HuggingFace Transformers |
 | 14 | [14.find_matching_jobs.py](14.find_matching_jobs.py) | Semantic search | Building a semantic job search engine: pre-computing BERT embeddings for a dataset and ranking results by cosine similarity |
+| 15 | [15.semantic_job_search_using_chromadb.py](15.semantic_job_search_using_chromadb.py) | Vector database | Replacing the manual BERT + cosine loop with ChromaDB: auto-embedding via SentenceTransformer, HNSW index for fast search, and metadata-aware querying |
 
 ---
 
@@ -209,8 +211,9 @@ This makes it easy to understand any file at a glance without opening the full R
 ├── 10.ai_tweet_creator.py
 ├── 11.ai_chat_support_system.py
 ├── 12.embedding_similarity.py
-├── 13.bert_sample.py           # Requires: NLTK downloads, transformers, torch
-├── 14.find_matching_jobs.py    # Requires: job_title_des.csv or job_descriptions.csv
+├── 13.bert_sample.py                          # Requires: NLTK downloads, transformers, torch
+├── 14.find_matching_jobs.py                   # Requires: job_title_des.csv or job_descriptions.csv
+├── 15.semantic_job_search_using_chromadb.py   # Requires: job_title_des.csv or job_descriptions.csv
 ├── training_set.jsonl          # Required for file 7 (fine-tuning) — not included
 └── validation_set.jsonl        # Required for file 7 (fine-tuning) — not included
 ```
@@ -232,13 +235,16 @@ See [requirements.txt](requirements.txt) for the full list. Key packages:
 | `nltk` | Tokenization, stop words, lemmatization (files 13, 14) |
 | `transformers` | BERT tokenizer and model (files 13, 14) |
 | `torch` | PyTorch backend for BERT inference (files 13, 14) |
+| `chromadb` | Vector database for storing and querying embeddings (file 15) |
+| `sentence-transformers` | Lightweight sentence embedding model via ChromaDB (file 15) |
 
 ---
 
 ## Notes
 
-- Files 13 and 14 do **not** use the OpenAI API — they demonstrate local NLP using open-source models (BERT via HuggingFace). First run will download ~440MB of model weights.
-- Files 13 and 14 require NLTK data to be downloaded first — see the [NLTK Data](#nltk-data-required-for-files-13-and-14) section above.
-- File 14 requires a CSV file (`job_title_des.csv` or `job_descriptions.csv`) with columns `Job Title` and `Job Description`.
+- Files 13, 14, and 15 do **not** use the OpenAI API — they demonstrate local NLP using open-source models. First run downloads ~440MB for BERT (files 13–14) or ~80MB for SentenceTransformer (file 15).
+- Files 13 and 14 require NLTK data to be downloaded first — see the [NLTK Data](#nltk-data-required-for-files-13-and-14) section above. File 15 does not require NLTK.
+- Files 14 and 15 require a CSV file (`job_title_des.csv` or `job_descriptions.csv`) with columns `Job Title` and `Job Description`.
+- File 15 uses `chromadb.EphemeralClient()` — the collection is in-memory and is rebuilt on every run. To persist embeddings across runs, switch to `chromadb.PersistentClient(path="./chroma_db")`.
 - Files 7 and 8 require `training_set.jsonl` and `validation_set.jsonl` for fine-tuning. These are not included in the repo as they are user-specific training data.
 - Files 7 and 8 are meant to be run in sequence. File 7 sets `FINE_TUNING_JOB_ID` in the current process environment. If you run file 8 in a new terminal session, add `FINE_TUNING_JOB_ID=<your-job-id>` to your `.env` file manually so it persists.
